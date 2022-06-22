@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JS_Functions</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+ <a href="../Var_let_const//index.html">var let const </a>
+ <br>
+ <a href="../Map_filter_reduce/index.html">Map filter reduce</a>
+
+  <h2>
+    Que. What is Function Declaration ?
+  </h2>
+  <pre>
+  function Square(num){
+    return num*num;
+}
+console.log(Square(1));
+
+</pre>
+  <hr>
+  <h2>Function Expression</h2>
+  <li>a function asigning to a variable</li>
+  <pre>
+  const Square = function (num){
+    return num*num;
+}
+
+console.log(Square(2));
+</pre>
+  <h2>Anonymous Function</h2>
+  <li>ES6 introduced a new and shorter way of declaring an anonymous function, which is known as Arrow Functions.</li>
+  <pre>
+  const Square = function(num){
+    return num*num
+}
+console.log(Square(15))//225
+</pre>
+  <h2>First Class Function</h2>
+  <pre>
+  function Square(num){
+    return num*num
+    }
+    
+    function Square(num){
+      return num*num
+    }
+    
+    //Fisrt Class Function
+
+  function calc(fn){
+  return fn(5)
+  }
+  
+  console.log(calc(Square)); //25
+</pre>
+  <h2>IIFE</h2>
+
+  <pre>
+
+  (function(){
+    console.log("Hi")
+  })()
+
+</pre>
+
+  <h2>Function Hoisting</h2>
+
+  <pre>
+  Addition(2,3) //5
+
+  function Addition(a,b){
+  console.log(a+b)
+  }
+  
+</pre>
+  <h2>
+    Function Scope
+
+  </h2>
+  <pre>
+
+var a= 1;
+var b= 2;
+
+function Addition(){
+    console.log(a+b)
+}
+Addition()//3
+
+function Addition2(){
+    var a = 3
+    var b = 4
+    console.log(a+b)
+    
+} 
+
+Addition2()//7
+</pre>
+  <h2>
+    Params vs Arguments
+  </h2>
+  <pre>
+  const Square =(num)=>{ //params
+    console.log(num*num)
+}
+
+Square(5) // argument
+</pre>
+
+  <h2>
+    Spread vs rest operator
+
+  </h2>
+  <pre>
+const Add = (...num) =>{ //rest operator
+
+    return num[0]+num[1]
+}
+const arr=[3,4]
+
+console.log(Add(...arr)) //Spred operator
+
+// output: 7
+</pre>
+  <li>rest parameter always will be at last in parameter</li>
+  <pre>
+
+  example:
+
+  function fn (a ,b, ...num){
+    console.log(a) //1
+    console.log(num) //[3,4]
+    console.log(a+b) //3
+    console.log(a+num) //13,4
+}
+
+fn(1,2,3,4)
+</pre>
+  <h2>
+    Callback function
+  </h2>
+  <li>
+    A callback function is a function which can be passed into another function as an argument.
+  </li>
+  <li>predefined setTimeout,filter,map etc</li>
+  <pre>
+  const Sq = (n) => {
+    return n * n;
+  };
+  
+  const calc = (cb, num) => {
+    return cb(num);
+  };
+  
+  console.log(calc(Sq, 3));
+</pre>
+
+
+
+  <h2>
+    Arrow Functions
+  </h2>
+  <li>Introduced in ES6</li>
+  <pre>
+const Square = (num) => num * num;
+
+console.log(Square(5)); //25
+</pre>
+
+  </h2>
+  <h2>
+    Arrow Functions Vs Regular function
+
+  </h2>
+  <li>
+    Syntax
+  </li>
+  <pre>
+
+  function Sqaure(num){
+    console.log(num*num)
+  }
+  
+  
+  const Square = (num) =>{
+    console.log(num*num)
+  }
+  
+</pre>
+  <li>implicit 'return' keyword</li>
+  <pre>
+  function Sq(num) {
+    return num * num;
+  }
+  console.log(Sq(3));
+  
+  
+  const Ad = (num) => num + num;
+  
+  console.log(Ad(2)); //4
+
+</pre>
+  <li>'arguments' keyword</li>
+  <pre>
+function Sq(){
+    console.log(arguments)
+}
+
+Sq(3,2,3,4) // Arguments(4) [3, 2, 3, 4, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+
+const Ad = () =>{
+    console.log(arguments)
+}
+
+Ad(1,2,3,4) //Uncaught ReferenceError: arguments is not defined
+</pre>
+  <li>
+
+  </li>
+  <li>
+
+  </li>
+  <li>
+
+  </li>
+  <li>
+
+  </li>
+  <h2>
+    Currying
+  </h2>
+  <li>
+    Currying is a function that takes one argument at a time and returns a new function expecting the next argument. It
+    is a conversion of functions from callable as f(a,b,c)into callable as f(a)(b)(c).
+  </li>
+  <pre>
+
+
+  func()()
+</pre>
+  <h2>Why should we use curriying ? </h2>
+  <li>
+    It makes a function pure which makes it expose to less errors and side effects.
+  </li>
+  <li>
+    It helps in avoiding the same variable again and again
+  </li>
+  <li>
+    It is a checking method that checks if you have all the things before you proceed.
+  </li>
+  <li> It divides one function into multiple functions so that one handles one set of responsibility.</li>
+  <pre>
+    curriying example: 
+
+    const Sum = (a) => {
+      return function (b) {
+        return function (c) {
+            console.log(a+b+c);
+        };
+      };
+    };
+    
+    Sum(2)(6)(1) //9
+
+  </pre>
+  <pre>
+    Example 2 
+
+    const calculate = (operation) => {
+      return function (a) {
+        return function (b) {
+          if (operation === "add") return a + b;
+          else if (operation === "sub") return a - b;
+          else if (operation === "div") return a / b;
+          else if (operation === "multi") return a * b;
+          else return "Enter Valid Inputs ";
+        };
+      };
+    };
+    
+    console.log(calculate("add")(4)(2));
+    console.log(calculate("sub")(4)(2));
+    console.log(calculate("div")(4)(2));
+    console.log(calculate("multi")(4)(2));
+    
+
+  </pre>
+
+  <h2>infinite currying</h2>
+  <pre>
+  const add = (a) => {
+      return function(b){
+          if (b) return add(a+b);
+          else return a;
+      }
+  
+  }
+  
+  console.log(add(1)(2)(5)(1)()) //9
+
+  </pre>
+  <h2>
+    Currying vs Partial Application
+  </h2>
+  <pre>
+
+    Currying :
+
+  const add = (a) => {
+      return function (b) {
+        return function (c) {
+          return a + b + c;
+        };
+      };
+    };
+    
+    console.log(add(1)(2)(3)); //6
+
+
+    Partial Application :
+
+    const add =(a)=>{
+      return function(b,c){
+          return a+b+c
+  
+      }
+  }
+  
+  console.log(add(1)(2,3))  //6
+
+  </pre>
+  <h2>Dom Manupulation</h2>
+</body>
+
+<script src="./index.js"></script>
+
+</html>
